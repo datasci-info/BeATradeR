@@ -17,7 +17,7 @@ rout=sample(0:1,size=1,prob=c(19/37,18/37),replace=T)##輪盤輸贏模擬
 	
 capital=capital+PL[i]		##計算第i+1次手上的籌碼
 i=i+1}					##準備玩第i局，回去while迴圈
-
+par(family="STKaiti") #Only for Mac
 plot(init+cumsum(PL),lwd=3,font=2,type="l",col="red"
 ,xlab="下注次數",ylab="累計籌碼數",main="輪盤馬丁")
 abline(h=init,col="green",lwd=2)
