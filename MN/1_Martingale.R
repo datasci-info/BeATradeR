@@ -1,3 +1,4 @@
+if (Sys.info()["sysname"] == "Darwin") par(family="STHeiti")
 num=1000			##程Ы计
 init=100			##﹍膚絏计
 capital=init 	##ヘ玡膚絏计
@@ -21,3 +22,4 @@ i=i+1}					##非称材iЫwhile癹伴
 plot(init+cumsum(PL),lwd=3,font=2,type="l",col="red"
 ,xlab="猔Ω计",ylab="仓璸膚絏计",main="近絃皑")
 abline(h=init,col="green",lwd=2)
+
