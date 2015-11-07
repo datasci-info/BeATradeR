@@ -1,24 +1,24 @@
-##???w?l?q?V?q?A?M???Ì¨Î¤U?`????f
+##µ¹©w·l¯q¦V¶q¡A´M§ä³Ì¨Î¤Uª`¤ñ¨Òf
 
-#PL=c(19,8,-7,10,11,5,-3,20,12,-15)	##???w?q?V?q
+#PL=c(19,8,-7,10,11,5,-3,20,12,-15)	##µ¹©w¯q¦V¶q
 PL=c(2,-1)
-TWR=rep(0,100)	# ?O???C?@?Ó¤U?`???Òª????????S?v(1%~100%)
+TWR=rep(0,100)	# °O¿ý¨C¤@­Ó¤Uª`¤ñ¨Òªº¥­§¡³ø¹S²v(1%~100%)
 
 for (f in 1:100){HPR=1	
-	for (i in 1:length(PL)){HPR=HPR*(1+(f/100)*(-PL[i]/min(PL)))}	##?p???U?`f???Òª????S
-TWR[f]=HPR^(1/length(PL))	##?N?p???X?Óª????S?v???X?ó¥­§?
+	for (i in 1:length(PL)){HPR=HPR*(1+(f/100)*(-PL[i]/min(PL)))}	##­pºâ¤Uª`f¤ñ¨Òªº³ø¹S
+TWR[f]=HPR^(1/length(PL))	##±N­pºâ¥X¨Óªº³ø¹S²v¨ú´X¦ó¥­§¡
 }
 par(family="STKaiti") #Only for Mac
-plot(TWR,col="red",type="l",font=2,lwd=3,xlab="?U?`????(%)"
-,main="Optimal f",ylab="???S?v")
+plot(TWR,col="red",type="l",font=2,lwd=3,xlab="¤Uª`¤ñ¨Ò(%)"
+,main="Optimal f",ylab="³ø¹S²v")
 
 points(tail(order(TWR),1),max(TWR),col="blue",pch=16)
 
 
-abline(h=1,col="green",lty=1,lwd=2)	##?l?q?â¥­?u
-abline(v=tail(order(TWR),1),col="blue",lty=1,lwd=1)	##?Ì¨Î¤U?`????
+abline(h=1,col="green",lty=1,lwd=2)	##·l¯q¨â¥­½u
+abline(v=tail(order(TWR),1),col="blue",lty=1,lwd=1)	##³Ì¨Î¤Uª`¤ñ¨Ò
 
 
 
-text(tail(order(TWR),1)+20,max(TWR-0.3),labels=paste("??f=",tail(order(TWR),1),"%?A?o?Í³Ì¤j??",max(TWR)))
+text(tail(order(TWR),1)+20,max(TWR-0.3),labels=paste("·íf=",tail(order(TWR),1),"%¡Aµo¥Í³Ì¤j­È",max(TWR)))
 
