@@ -1,61 +1,44 @@
-#!/usr/bin/env Rscript
+##Random Trade, StopLoss and Profit##
 
-# set random seed
-set.seed(666)
+currenttime=proc.time()	## current time record
 
-# set parameters
-SL=10
-SP=10
+tx=read.table("tx.txt",header=TRUE,sep=',',
+colClasses=c("NULL","character","character","integer"
+,"integer","integer","integer","integer"))	## reading Data
 
-# read historical data
-tx_full=read.table("tx.txt", header=TRUE, sep=',',
-                      colClasses=c("NULL", 
-                                   "character",
-                                   "character",
-                                   "integer",
-                                   "integer",
-                                   "integer",
-                                   "integer",
-                                   "integer"))
+tx=split(tx,factor(tx$Date,levels=unique(tx$Date),ordered=TRUE))	##Split Data
 
-# note : 
-#   datetime stirng format is ugly in raw data, 
-#   e.g., "2011103" which should be "20110103"
-tx_split <- split(tx_full, factor(tx_full$Date, levels=unique(tx_full$Date), ordered=TRUE))
+profit=setNames(numeric(length(tx)), names(tx))	## profit vector
 
-# main
-profit <- setNames(numeric(length(tx_split)), names(tx_split))
-for ( d in names(tx_split) ) {
-  nt <- length(unique(tx_split[[d]]$Time))
-  rd <- sample(0:1, size=1, prob=c(0.5,0.5))
-  if ( rd ) { 
-    long <- tx_split[[d]]$Open[1]
-    hit_H <- ifelse(length(hcond <- which(tx_split[[d]]$High > long + SP)), min(hcond), Inf)
-    hit_L <- ifelse(length(lcond <- which(tx_split[[d]]$Low < long - SL)), min(lcond), Inf)
-    j <- min(c(hit_H, hit_L, nt))
-    profit[d] <- 
-      if ( j == hit_H ) {
-        SP     
-      } else if ( j == hit_L ) {
-        -SL
-      } else {
-        tail(tx_split[[d]]$Close, 1) - long 
-      }
-  } else {
-    short <- tx_split[[d]]$Open[1]
-    hit_H <- ifelse(length(hcond <- which(tx_split[[d]]$High > short + SL)), min(hcond), Inf)
-    hit_L <- ifelse(length(lcond <- which(tx_split[[d]]$Low < short - SP)), min(lcond), Inf)
-    j <- min(c(hit_H, hit_L, nt))
-    profit[d] <- 
-      if ( j == hit_L ) {
-        SP     
-      } else if ( j == hit_H ) {
-        -SL
-      } else {
-        short - tail(tx_split[[d]]$Close, 1)
-      }
-  }
+SL=10	#Stop Loss Points
+SP=10	#Stop Profit Points
+
+for (m in names(tx)) {
+	txToday=tx[[m]]
+	todayTime=unique(txToday$Time)
+	rd=sample(0:1,size=1,prob=c(0.5,0.5))	## Random Trade
+	if (rd==1){long=txToday$Open[1]		## long price
+		j=1					## the j minuts in m day
+
+	while (txToday$High[j]<=long+SP && txToday$Low[j]>=long-SL && j<length(todayTime)){j=j+1} ##when stopLoss&Profit or Close			
+		if (j==length(todayTime)){profit[m]=txToday$Close[j]-long}			##Close end (-SL<profit<30)
+		if (txToday$Low[j]<long-SL && j<length(todayTime)){profit[m]=-SL}		##Stop Loss
+		if (txToday$High[j]>long+SP && j<length(todayTime)){profit[m]=SP}		##Stop Profit
+	
+	}else{short=txToday$Open[1]	##short price
+	j=1
+
+	while (txToday$Low[j]>=short-SP && txToday$High[j]<=short+SL && j<length(todayTime)){j=j+1} 	 ##when stopLoss&Profit or Close			
+		if (j==length(todayTime)){profit[m]=short-txToday$Close[j]}			##Close end (-SL<profit<30)
+		if (txToday$High[j]>short+SL && j<length(todayTime)){profit[m]=-SL}		##Stop Loss
+		if (txToday$Low[j]<short-SP && j<length(todayTime)){profit[m]=SP}		##Stop Loss
+	}
 }
 
-source('performance.R', encoding = 'BIG5',echo = FALSE)
 
+(spttime=proc.time()-currenttime)
+
+###performance module######
+
+source('performance.R', encoding = 'BIG5',echo = FALSE)
+performance(profit)
