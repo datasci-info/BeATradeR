@@ -1,36 +1,61 @@
-##開盤隨機交易，10點停損，10點停利
+#!/usr/bin/env Rscript
 
-tx=read.csv("tx.txt")#讀檔
-tx=tx[,-1]
+# set random seed
+set.seed(666)
 
-allDate=unique(tx$Date)#交易日期的向量
-profit=rep(0,1)	#損益向量
+# set parameters
+SL <- 10
+SP <- 10
 
-SL=10	#停損10點
-SP=10	#停利10點
+# read historical data
+tx_full <- read.table("tx.txt", header=TRUE, sep=',',
+                      colClasses=c("NULL", 
+                                   "character",
+                                   "character",
+                                   "integer",
+                                   "integer",
+                                   "integer",
+                                   "integer",
+                                   "integer"))
 
-for (m in 1:length(allDate)) {
-	txToday=tx[tx$Date==allDate[m],]
-	todayTime=unique(txToday$Time)
-	rd=sample(0:1,size=1,prob=c(0.5,0.5))##丟銅板隨機買賣
-	if (rd==1){long=txToday$Open[1]	##開盤買進價位
-		j=1	##第m天的第1分鐘
+# note : 
+#   datetime stirng format is ugly in raw data, 
+#   e.g., "2011103" which should be "20110103"
+tx_split <- split(tx_full, factor(tx_full$Date, levels=unique(tx_full$Date), ordered=TRUE))
 
-	while (txToday$High[j]<=long+SP && txToday$Low[j]>=long-SL && j<length(todayTime)){j=j+1}##check先到停損還是停利，還是收盤平倉			
-		if (j==length(todayTime)){profit[m]=txToday$Close[j]-long}			##試單收盤平倉 (-SL<損益<30)
-		if (txToday$Low[j]<long-SL && j<length(todayTime)){profit[m]=-SL}		##試單停損
-		if (txToday$High[j]>long+SP && j<length(todayTime)){profit[m]=SP}		##試單停損
-	
-	}else{short=txToday$Open[1]	##開盤賣出價位
-	j=1
-
-	while (txToday$Low[j]>=short-SP && txToday$High[j]<=short+SL && j<length(todayTime)){j=j+1} 	##check先到停損還是停利，還是收盤平倉			
-		if (j==length(todayTime)){profit[m]=short-txToday$Close[j]}			##試單收盤平倉 (-SL<損益<30)
-		if (txToday$High[j]>short+SL && j<length(todayTime)){profit[m]=-SL}		##試單停損
-		if (txToday$Low[j]<short-SP && j<length(todayTime)){profit[m]=SP}		##試單停損
-	}
+# main
+profit <- setNames(numeric(length(tx_split)), names(tx_split))
+for ( d in names(tx_split) ) {
+  nt <- length(unique(tx_split[[d]]$Time))
+  rd <- sample(0:1, size=1, prob=c(0.5,0.5))
+  if ( rd ) { 
+    long <- tx_split[[d]]$Open[1]
+    hit_H <- ifelse(length(hcond <- which(tx_split[[d]]$High > long + SP)), min(hcond), Inf)
+    hit_L <- ifelse(length(lcond <- which(tx_split[[d]]$Low < long - SL)), min(lcond), Inf)
+    j <- min(c(hit_H, hit_L, nt))
+    profit[d] <- 
+      if ( j == hit_H ) {
+        SP     
+      } else if ( j == hit_L ) {
+        -SL
+      } else {
+        tail(tx_split[[d]]$Close, 1) - long 
+      }
+  } else {
+    short <- tx_split[[d]]$Open[1]
+    hit_H <- ifelse(length(hcond <- which(tx_split[[d]]$High > short + SL)), min(hcond), Inf)
+    hit_L <- ifelse(length(lcond <- which(tx_split[[d]]$Low < short - SP)), min(lcond), Inf)
+    j <- min(c(hit_H, hit_L, nt))
+    profit[d] <- 
+      if ( j == hit_L ) {
+        SP     
+      } else if ( j == hit_H ) {
+        -SL
+      } else {
+        short - tail(tx_split[[d]]$Close, 1)
+      }
+  }
 }
 
-###############績效模組#######
-
 source('performance.R', encoding = 'BIG5',echo = FALSE)
+
