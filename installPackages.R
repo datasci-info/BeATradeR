@@ -4,4 +4,6 @@ install_github("joshuaulrich/quantmod")
 install.packages("PerformanceAnalytics")
 install.packages("foreach")
 install.packages("quantstrat", repos="http://R-Forge.R-project.org", type="source")
-
+# install.packages("httr")
+# install.packages("rvest")
+# install.packages("stringr")
