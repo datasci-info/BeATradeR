@@ -1,6 +1,6 @@
-##開高買開低賣30點停損不停利
+##Long_High_Short_Low_Stop_Loss##
 
-tx=read.csv("tx.txt")#讀檔
+tx=read.csv("tx.txt") 
 tx=tx[,-1]
 
 allDate=unique(tx$Date)#交易日期的向量
