@@ -4,11 +4,11 @@
 set.seed(666)
 
 # set parameters
-SL <- 10
-SP <- 10
+SL=10
+SP=10
 
 # read historical data
-tx_full <- read.table("tx.txt", header=TRUE, sep=',',
+tx_full=read.table("tx.txt", header=TRUE, sep=',',
                       colClasses=c("NULL", 
                                    "character",
                                    "character",
