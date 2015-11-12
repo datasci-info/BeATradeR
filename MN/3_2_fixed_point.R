@@ -1,7 +1,7 @@
 ### Fixed Fraction ###
 ### Input profit vector ##
 
-source("3_1_Long_High_Short_Low_Stop_LossR", encoding = 'BIG5',echo = FALSE)
+source("3_1_Long_High_Short_Low_Stop_Loss.R", encoding = 'BIG5',echo = FALSE)
 
 initM=150000	## initial money
 loss=1500	## the stop loss of the strategy

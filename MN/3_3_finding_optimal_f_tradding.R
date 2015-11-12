@@ -1,7 +1,7 @@
 ##finding_the_optimal_f_for_gamblig##
 
 ###input profit vector  ###
-source("3_1_Long_High_Short_Low_Stop_LossR", encoding = 'BIG5',echo = FALSE)
+source("3_1_Long_High_Short_Low_Stop_Loss.R", encoding = 'BIG5',echo = FALSE)
 
 initM=150000		## initial money
 loss=1500		## the stop loss of the original strategy
@@ -22,7 +22,7 @@ k=k+1}
 OptF=F[1]+0.002*(tail(order(capital),1)-1)	## fing the optimal risk fraction
 
 ### performance module ###
-par(family="STKaiti")
+
 plot(capital[1:50],type="h",lwd=5,font=2,col="red"
 ,main=paste("OptimalRiskFraction",OptF*100,"%"),xlab="Risk Fraction (%)"
 ,ylab="Capital",xaxt="n")

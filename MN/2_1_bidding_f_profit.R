@@ -11,7 +11,7 @@ capital=rep(initM,1)  		## current capital
 
 for(i in 2:nbet){	## running each game
 capital[i]=dice[i-1]*capital[i-1]*f*(1+odds)+capital[i-1]*(1-f)} ## the growth of capital
-
+par(mfcol=c(1,1))
 plot(capital,type="l",col="red",lwd=4,font=2
 ,xlim=c(0,nbet),ylim=c(0,max(capital))
 ,xlab="The # of Bidding",ylab="The Growth of Capital"
