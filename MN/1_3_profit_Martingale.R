@@ -21,7 +21,7 @@ m=m+1}
 
 #### Performance Module ###
 
-source('performance.R', encoding = 'BIG5',echo = FALSE)
+source('performance.R')
 par(mfrow=c(1,2))
 performance(profit)
 performance(PL)

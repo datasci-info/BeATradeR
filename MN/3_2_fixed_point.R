@@ -1,7 +1,7 @@
 ### Fixed Fraction ###
 ### Input profit vector ##
 
-source("3_1_Long_High_Short_Low_Stop_Loss.R", encoding = 'BIG5',echo = FALSE)
+source("3_1_Long_High_Short_Low_Stop_Loss.R")
 
 initM=150000	## initial money
 loss=1500	## the stop loss of the strategy
@@ -18,7 +18,7 @@ FixedFra[m]=PS*profit[m]		## the profit of the m days after PS
 m=m+1}
 
 ### performance module ###
-source("performance.R", encoding = 'BIG5',echo = FALSE)
+source("performance.R")
 par(mfcol=c(1,2))
 performance(profit)
 performance(FixedFra)

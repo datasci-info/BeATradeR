@@ -31,17 +31,6 @@ for (m in 2:length(profit)){
 DDT=rep(TPT[1],1)
 for (i in 2:length(TPT)){DDT[i]=TPT[i]-TPT[i-1]}
 
-cat(" 損益:",sum(profit),"\n"
-,"交易天數:",length(profit),"\n"
-,"平均每次損益:",sum(profit)/length(profit[profit!=0]),"\n"
-,"獲利次數:",length(profit[profit>0]),"\n"
-,"勝率:",length(profit[profit>0])*100/length(profit[profit!=0]),"%","\n"
-,"平均賺:",mean(profit[profit>0]),"\n"
-,"平均賠:",mean(profit[profit<0]),"\n"
-,"最大連續虧損:",abs(min(DD)),"\n"
-,"最大連續虧損區間(天):",tail(sort(DDT),5),"\n"
-,"獲利因子:",sum(profit[profit>0])/-sum(profit[profit<0]),"\n"
-,"總獲利/MDD:",sum(profit)/abs(min(DD)),"\n")
 
 cat(" Total Profit:",sum(profit),"\n"
 ,"Trading Days:",length(profit),"\n"

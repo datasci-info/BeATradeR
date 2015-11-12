@@ -43,5 +43,5 @@ last=tail(txToday$Close,1)
 (spttime=proc.time()-currenttime)
 ########Perofrmance module#######
 
-source("performance.R", encoding = 'BIG5',echo = FALSE)
+source("performance.R")
 performance(profit)

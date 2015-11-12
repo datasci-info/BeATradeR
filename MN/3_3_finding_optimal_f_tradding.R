@@ -1,7 +1,7 @@
 ##finding_the_optimal_f_for_gamblig##
 
 ###input profit vector  ###
-source("3_1_Long_High_Short_Low_Stop_Loss.R", encoding = 'BIG5',echo = FALSE)
+source("3_1_Long_High_Short_Low_Stop_Loss.R")
 
 initM=150000		## initial money
 loss=1500		## the stop loss of the original strategy
