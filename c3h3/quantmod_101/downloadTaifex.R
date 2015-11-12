@@ -46,7 +46,7 @@ for (rptF in rptFiles){
   parsingRPT = F
   
   sqliteDrv <- dbDriver("SQLite")
-  conn <- dbConnect(sqliteDrv,TAIFEX_DB_PATH)
+  conn <- dbConnect(sqliteDrv,TAIFEX_DB_FILE)
   
   if (!"FutureTByT" %in% dbListTables(conn)){
     
