@@ -1,5 +1,13 @@
 # Be A TradeR
 
+## 此頁網址：http://tinyurl.com/nsxja54
+
+## 廣播：http://tinyurl.com/nedhxwm
+
+##共筆：http://tinyurl.com/oftq98a
+
+##Forum：http://tinyurl.com/oc42by3
+
 # Slides:
 - [上午場]
 - [下午場] https://docs.google.com/presentation/d/1JsIPnoLSlp8YOWjDsV_7uTx271ePbifP40QoUqUdI5Y/embed?start=false&loop=false&delayms=60000
@@ -12,7 +20,7 @@
 
 ```
 pkgs <- c("quantmod", "PerformanceAnalytics", "foreach",
-          "quantstrat", "httr", "rvest", "stringr", 
+          "quantstrat", "httr", "rvest", "stringr",
           "RSQLite", "RMySQL", "dplyr", "e1071", "xgboost",
           "ada")
 repos.list <- c("http://140.112.170.201/R", "http://45.33.57.118/R", "http://datasci-info.github.io/R")
@@ -36,4 +44,3 @@ https://www.youtube.com/playlist?list=PLLSknrdOLKyExmSXobXQebQUg2kESYGIe
 
 ##### Maybe Need Rtools
 https://cran.r-project.org/bin/windows/Rtools/
-

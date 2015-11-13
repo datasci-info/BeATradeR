@@ -1,4 +1,4 @@
 *.zip
 *.rpt
 *.sqlite
-
+*.DS_Store
