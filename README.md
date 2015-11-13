@@ -33,7 +33,7 @@ install.packages(pkgs, repos = sample(repos.list, 1, prob = c(3, 5, 2)))
 
 ![](http://i.imgur.com/VLTBK4S.png)
 
-## 教學影片
+## 環境安裝教學與簡易除錯影片
 https://www.youtube.com/playlist?list=PLLSknrdOLKyExmSXobXQebQUg2kESYGIe
 
 ## For Mac
