@@ -2,3 +2,4 @@
 *.rpt
 *.sqlite
 *.DS_Store
+*.RData
