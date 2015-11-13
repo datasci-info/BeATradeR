@@ -92,18 +92,3 @@ for (rptF in rptFiles){
 
 
 
-
-sqliteDrv <- dbDriver("SQLite")
-conn <- dbConnect(sqliteDrv,TAIFEX_DB_FILE)
-df = dbGetQuery(conn,sprintf("select time, price, volume from FutureTByT where pcode = 'TX' and exMW = '201511'", dataDate))
-Xt = xts(df$price, order.by = as.POSIXct(df$time,origin = "1970-01-01",tz = "CST"))
-chartSeries(to.minutes(Xt))
-addCCI()
-addBBands()
-
-chartSeries(Xt["2015-11-11"])
-chartSeries(to.minutes(Xt["2015-11-11"]))
-chartSeries(to.minutes10(Xt["2015-11-11"]))
-?chartSeries
-
-
