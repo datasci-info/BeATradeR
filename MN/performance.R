@@ -1,15 +1,16 @@
-### 畫損益圖 and 策略績效模組 ### INPUT profit5 向量
+### Performance Module, Drawing ##
+### INPUT profit vector
 
-#performance=function (x=profit){
+performance=function (profit){
 
-DD=rep(0,length(profit))	##累計虧損向量
-topprofit=rep(profit[1],length(profit))	##最大獲利
+DD=rep(0,length(profit))	## Draw Down
+topprofit=rep(profit[1],length(profit))	## temp maximum profit
 
 for (m in 2:length(profit)){
 	if (sum(profit[1:m])>topprofit[m-1]){
-	topprofit[m:length(profit)]=sum(profit[1:m])}##如果創新高，將資產新高設為topprofit
+	topprofit[m:length(profit)]=sum(profit[1:m])} ## setting top profit
 
-	DD[m]=sum(profit[1:m])-topprofit[m]	##計算目前的連續虧損
+	DD[m]=sum(profit[1:m])-topprofit[m]	## current draw down
 }
 
 
@@ -28,22 +29,18 @@ for (m in 2:length(profit)){
 }
 
 DDT=rep(TPT[1],1)
-for (i in 2:length(TPT)){	DDT[i]=TPT[i]-TPT[i-1]}
+for (i in 2:length(TPT)){DDT[i]=TPT[i]-TPT[i-1]}
 
 
-cat(" 損益(扣5點手續費):",sum(profit),"\n"
-,"交易天數:",length(profit),"\n"
-,"總交易次數:",length(profit[profit!=0]),"\n"
-,"平均每次損益(扣5點手續費):",sum(profit)/length(profit[profit!=0]),"\n"
-,"獲利次數:",length(profit[profit>0]),"\n"
-,"勝率:",length(profit[profit>0])*100/length(profit[profit!=0]),"%","\n"
-,"平均賺:",mean(profit[profit>0]),"\n"
-,"平均賠:",mean(profit[profit<0]),"\n"
-,"最大連續虧損:",abs(min(DD)),"\n"
-,"最大連續虧損區間(天):",tail(sort(DDT),5),"\n"
-,"獲利因子:",sum(profit[profit>0])/-sum(profit[profit<0]),"\n"
-,"SQN:",(sum(profit)/length(profit[profit!=0]))*length(profit[profit!=0])^0.5/sd(profit[profit!=0]),"\n"
-,"總獲利/MDD:",sum(profit)/abs(min(DD)),"\n")
-#,"進度:",kk1,kk2,tt1,tt2,"\n")
-
-#}
+cat(" Total Profit:",sum(profit),"\n"
+,"Trading Days:",length(profit),"\n"
+,"Profit Per Trade:",sum(profit)/length(profit[profit!=0]),"\n"
+,"# of Win:",length(profit[profit>0]),"\n"
+,"Win Rate:",length(profit[profit>0])*100/length(profit[profit!=0]),"%","\n"
+,"Winning Average:",mean(profit[profit>0]),"\n"
+,"Lossing Average:",mean(profit[profit<0]),"\n"
+,"Maximum Draw Down:",abs(min(DD)),"\n"
+,"The Periods of MDD:",tail(sort(DDT),5),"\n"
+,"Profit Factor:",sum(profit[profit>0])/-sum(profit[profit<0]),"\n"
+,"Total Profit/MDD:",sum(profit)/abs(min(DD)),"\n")
+}
