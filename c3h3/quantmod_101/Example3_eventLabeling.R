@@ -5,7 +5,7 @@
 library(quantmod)
 
 Xt = getSymbols("2330.TW",auto.assign = F)
-chartSeries(Xt,TA=NULL)
+chartSeries(Xt,TA=NULL, theme = "white")
 addSMA(n = 5,col = 2)
 addSMA(n = 60, col = 5)
 
@@ -15,7 +15,7 @@ addTA(Cl5SMA - Cl60SMA,col=4)
 addTA(sign(Cl5SMA - Cl60SMA),col=5)
 
 # re-draw with two SMAs
-chartSeries(Cl5SMA)
+chartSeries(Cl5SMA, theme = "white")
 addTA(Cl60SMA,col=5,on = 1)
 addTA(Cl5SMA - Cl60SMA,col=6)
 addTA(sign(Cl5SMA - Cl60SMA),col=7)
@@ -38,7 +38,7 @@ addTA(Lo(Xt)[TUpDates]*(1-liftRatio),on=1,type="p",col=2,pch=24,bg="red")
 library(quantmod)
 
 Xt = getSymbols("^TWII",auto.assign = F)
-chartSeries(Xt,TA=NULL)
+chartSeries(Xt,TA=NULL, theme = "white")
 
 k=60
 Xt_kMin = runMin(Xt, n = k, cumulative = FALSE)
@@ -47,7 +47,7 @@ addTA(Xt_kMin,on=1,type="l",col=2)
 addTA(Xt_kMax,on=1,type="l",col=4)
 
 # re-draw with close and channel bottom
-chartSeries(Cl(Xt))
+chartSeries(Cl(Xt), theme = "white")
 addTA(Xt_kMin,on=1,type="l",col=2)
 addTA(Cl(Xt) - Xt_kMin,type="l",col=3)
 addTA(sign(Cl(Xt) - Xt_kMin),type="l",col=4)
@@ -57,14 +57,14 @@ ClCrossMinGtDates <- index(Xt)[which(diff(sign(Cl(Xt) - Xt_kMin)) > 0 )]
 ClCrossMinLtDates <- index(Xt)[which(diff(sign(Cl(Xt) - Xt_kMin)) < 0 )]
 
 liftRatio = 0.02
-chartSeries(Cl(Xt))
+chartSeries(Cl(Xt), theme = "white")
 addTA(Xt_kMin,on=1,type="l",col=2)
 addTA(Cl(Xt)[ClCrossMinLtDates]*(1+liftRatio),on=1,type="p",col=3,pch=25,bg="green")
 addTA(Cl(Xt)[ClCrossMinGtDates]*(1-liftRatio),on=1,type="p",col=2,pch=24,bg="red")
 
 
 # re-draw with close and channel bottom
-chartSeries(Cl(Xt))
+chartSeries(Cl(Xt), theme = "white")
 addTA(Xt_kMax,on=1,type="l",col=2)
 addTA(Cl(Xt) - Xt_kMax,type="l",col=3)
 addTA(sign(Cl(Xt) - Xt_kMax),type="l",col=4)
@@ -74,14 +74,14 @@ ClCrossMaxGtDates <- index(Xt)[which(diff(sign(Cl(Xt) - Xt_kMax)) > 0 )]
 ClCrossMaxLtDates <- index(Xt)[which(diff(sign(Cl(Xt) - Xt_kMax)) < 0 )]
 
 liftRatio = 0.02
-chartSeries(Cl(Xt))
+chartSeries(Cl(Xt), theme = "white")
 addTA(Xt_kMax,on=1,type="l",col=2)
 addTA(Cl(Xt)[ClCrossMaxLtDates]*(1+liftRatio),on=1,type="p",col=3,pch=25,bg="green")
 addTA(Cl(Xt)[ClCrossMaxGtDates]*(1-liftRatio),on=1,type="p",col=2,pch=24,bg="red")
 
 
 # Summary
-chartSeries(Cl(Xt))
+chartSeries(Cl(Xt), theme = "white")
 addTA(Xt_kMin,on=1,type="l",col=2)
 addTA(Xt_kMax,on=1,type="l",col=4)
 addTA(Hi(Xt)[ClCrossMaxLtDates]*(1+liftRatio),on=1,type="p",col=3,pch=25,bg="green")
@@ -94,7 +94,7 @@ addTA(Cl(Xt)[ClCrossMinGtDates]*(1-liftRatio),on=1,type="p",col=2,pch=24,bg="red
 library(quantmod)
 
 Xt = getSymbols("^TWII",auto.assign = F)
-chartSeries(Xt,TA=NULL)
+chartSeries(Xt,TA=NULL, theme = "white")
 
 k=30
 Xt_kMin = runMin(Xt, n = k, cumulative = FALSE)
@@ -115,9 +115,9 @@ addTA( diff(volatility) ,type="l",col=5)
 library(quantmod)
 
 Xt = getSymbols("^TWII",auto.assign = F)
-chartSeries(Xt,TA="addBBands(n=30)")
-addTA(Xt_kMin,on=1,type="l",col=8)
-addTA(Xt_kMax,on=1,type="l",col=8)
+chartSeries(Xt,TA="addBBands(n=30)", theme = "white")
+addTA(Xt_kMin,on=1,type="l",col=9)
+addTA(Xt_kMax,on=1,type="l",col=9)
 
 
 bb = BBands(HLC(Xt),n=30)
@@ -133,7 +133,7 @@ addTA( diff(volatility) ,type="l",col=7)
 
 
 # Clean up 
-chartSeries(Xt,TA="addBBands(n=60)")
+chartSeries(Xt,TA="addBBands(n=60)", theme = "white")
 bb = BBands(HLC(Xt),n=60)
 BBvolatility = (bb$up - bb$dn)/bb$dn
 hist(BBvolatility,breaks = 200)
