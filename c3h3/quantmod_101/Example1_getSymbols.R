@@ -6,7 +6,7 @@
 library(quantmod)
 getSymbols("^TWII")
 View(TWII)
-chartSeries(TWII)
+chartSeries(TWII, theme = "white")
 
 ######################################################################
 ### get 3008,TW
@@ -17,10 +17,10 @@ getSymbols("3008.TW")
 
 `3008.TW`
 get("3008.TW")
-chartSeries(`3008.TW`)
+chartSeries(`3008.TW`, theme = "white")
 
 Xt = getSymbols("2330.TW",auto.assign = F)
-chartSeries(Xt)
+chartSeries(Xt, theme = "white")
 
 ######################################################################
 ### R Helpers Remind ......
@@ -65,6 +65,6 @@ get("c")
 ######################################################################
 
 getSymbols("USD/TWD",src="oanda",from="2000-01-01")
-chartSeries(USDTWD)
+chartSeries(USDTWD, theme = "white")
 
 
