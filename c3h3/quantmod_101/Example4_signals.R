@@ -5,7 +5,7 @@
 library(quantstrat)
 
 Xt = getSymbols('2330.TW', auto.assign = F)
-chartSeries(tail(Xt,300),TA = NULL)
+chartSeries(tail(Xt,300),TA = NULL, theme = "white")
 addBBands()
 
 BBandsDN = function(mktdata,n) BBands(mktdata)$dn
@@ -24,7 +24,7 @@ clCrossOverSMA60 = sigCrossover(label="Cl.gt.SMA",
                                 relationship="gt")
 
 liftRatio = 0.02
-chartSeries(tail(Xt,600),TA = NULL)
+chartSeries(tail(Xt,600),TA = NULL, theme = "white")
 addBBands()
 addTA(Lo(Xt)[!is.na(clCrossOverBBandDn)]*(1-liftRatio),on=1,type="p",col=2,pch=24,bg="red")
 addTA(Hi(Xt)[!is.na(clCrossOverSMA60)]*(1+liftRatio),on=1,type="p",col=3,pch=25,bg="green")
@@ -41,7 +41,7 @@ crxLtThSig = sigThreshold(label = "Xt.Lt.Th",data = Xt,column = "BBvolatility",t
 crxGtThSig = sigThreshold(label = "Xt.Gt.Th",data = Xt,column = "BBvolatility",threshold = 0.2,relationship = "gt",cross = T)
 
 # Draw it
-chartSeries(Xt,TA="addBBands(n=30)")
+chartSeries(Xt,TA="addBBands(n=30)", theme = "white")
 addTA( Xt$BBvolatility ,type="l",col=4)
 addTA( sign(Xt$BBvolatility - 0.2) ,type="l",col=5)
 addTA(crxLtThSig,col=7)
