@@ -55,6 +55,3 @@ chartSeries(Xt["2015-11-11"])
 chartSeries(to.minutes(Xt["2015-11-11"]))
 chartSeries(to.minutes10(Xt["2015-11-11"]))
 
-
-
-
