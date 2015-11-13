@@ -5,7 +5,7 @@
 
 library(quantmod)
 
-Xt = getSymbols("^TWII",from="2001-01-01",auto.assign = F)
+Xt = getSymbols("^SOX",from="2001-01-01",auto.assign = F)
 
 # lag(xts)
 head(Xt)
@@ -20,7 +20,7 @@ head(lag(Xt,-3))
 ######################################################################
 
 Diff = lag(Cl(Xt),-1) - Cl(Xt)
-Diff = Targets[-NROW(Xt)]
+Diff = Diff[-NROW(Xt)]
 Labels = sign(Diff)
 
 ######################################################################
@@ -99,7 +99,7 @@ table(Testing_Y,predict(model,Testing_X))
 model$model$trees
 
 plot(model$model$trees[[1]])
-text(model$model$trees[[1]])
+text(model$model$trees[[1]], cex = .8)
 
 
 #####################################################################
