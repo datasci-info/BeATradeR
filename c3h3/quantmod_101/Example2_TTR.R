@@ -5,8 +5,8 @@
 
 library(quantmod)
 getSymbols("USD/TWD",src="oanda")
-chartSeries(USDTWD)
-chartSeries(to.weekly(USDTWD))
+chartSeries(USDTWD, theme = "white")
+chartSeries(to.weekly(USDTWD), theme = "white")
 
 # add + TAB
 add 
@@ -25,7 +25,7 @@ USDTWD_kMax = runMax(USDTWD, n = k, cumulative = FALSE)
 USDTWD_kMedian = runMedian(USDTWD, n = k, cumulative = FALSE)
 USDTWD_kMean = runMean(USDTWD, n = k, cumulative = FALSE)
 
-chartSeries(USDTWD)
+chartSeries(USDTWD, theme = "white")
 addTA(USDTWD_kMin,on=1,type="l",col=2)
 addTA(USDTWD_kMax,on=1,type="l",col=4)
 addTA(USDTWD_kMedian,on=1,type="l",col=5)
@@ -50,7 +50,7 @@ bb <- BBands(HLC(Xt),n=60)
 tail(bb)
 
 volatility = (bb$up - bb$dn) / bb$dn
-chartSeries(Xt,TA = NULL)
+chartSeries(Xt,TA = NULL, theme = "white")
 addTA(volatility,type="l",col=2)
 addTA(diff(volatility),type="l",col=2)
 
@@ -60,7 +60,7 @@ addTA(diff(volatility),type="l",col=2)
 
 Xt = getSymbols("^TWII",auto.assign = F)
 
-chartSeries(Xt,TA = NULL)
+chartSeries(Xt,TA = NULL, theme = "white")
 addCCI()
 addADX()
 
@@ -85,7 +85,7 @@ args(stoch)
 
 KD <- stoch(HLC(Xt))
 tail(KD)
-chartSeries(Xt,TA = NULL)
+chartSeries(Xt,TA = NULL, theme = "white")
 addTA(KD$fastK,type="l",col=2)
 addTA(KD$fastD,type="l",col=3,on=2)
 addTA(KD$slowD,type="l",col=4,on=2)
