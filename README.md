@@ -11,8 +11,8 @@
 ## 課程教學文件：https://goo.gl/JPorYm
 
 # Slides:
-- [上午場] https://docs.google.com/presentation/d/1gbSb6zwvZWVcEmCdiwSMnX7iZG9_52u-wfo8nHFVLdA/pub?start=false&loop=false&delayms=60000&slide=id.p4
-- [下午場] https://docs.google.com/presentation/d/1JsIPnoLSlp8YOWjDsV_7uTx271ePbifP40QoUqUdI5Y/embed?start=false&loop=false&delayms=60000
+- [上午場] https://goo.gl/NUZx8i
+- [下午場] https://goo.gl/o4SzQs
 
 # 環境設定
 
