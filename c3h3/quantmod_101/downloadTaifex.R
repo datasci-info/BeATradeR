@@ -49,7 +49,7 @@ for (rptF in rptFiles){
   conn <- dbConnect(sqliteDrv,TAIFEX_DB_FILE)
   
   if (!"FutureTByT" %in% dbListTables(conn)){
-    
+    parsingRPT = T
   }else{
     if (dbGetQuery(conn,sprintf("select count(*) from FutureTByT where date = %s", dataDate))[1] == 0){
       parsingRPT = T
