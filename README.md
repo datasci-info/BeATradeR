@@ -1,12 +1,14 @@
 # Be A TradeR
 
-## 此頁網址：http://tinyurl.com/nsxja54
+## 此頁網址：https://goo.gl/I5rYG9
 
-## 廣播：http://tinyurl.com/nedhxwm
+## 廣播：https://goo.gl/tVMDEE
 
-##共筆：http://tinyurl.com/oftq98a
+##共筆：https://goo.gl/YZP3Fq
 
-##Forum：http://tinyurl.com/oc42by3
+##Forum：http://goo.gl/vqFaEA
+
+## 課程教學文件：https://goo.gl/JPorYm
 
 # Slides:
 - [上午場]
