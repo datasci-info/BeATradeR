@@ -3,7 +3,7 @@ library(quantmod)
 
 getSymbols("^TWII")
 View(TWII)
-chartSeries(TWII)
+chartSeries(TWII, theme = "white")
 
 getSymbols("0050.TW")
 0050.TW
@@ -25,7 +25,7 @@ T == TRUE
 ?getSymbols.oanda
 
 getSymbols("USD/TWD",src="oanda",from="2000-01-01")
-chartSeries(USDTWD)
+chartSeries(USDTWD, theme = "white")
 
 debug(getSymbols)
 getSymbols("^TWII")
