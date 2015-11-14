@@ -11,7 +11,7 @@
 ## 課程教學文件：https://goo.gl/JPorYm
 
 # Slides:
-- [上午場] https://goo.gl/NUZx8i
+- [上午場] https://goo.gl/e8CKO5
 - [下午場] https://goo.gl/o4SzQs
 
 # 環境設定
