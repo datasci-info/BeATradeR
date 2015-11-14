@@ -13,9 +13,9 @@ profit=setNames(numeric(length(tx)), names(tx))	## profit vector
 SL=30		#Stop Loss Points
 SP=5000	# No Stop Profit(or Stop 5000 profit)
 
-last=5000
+last=tail(tx[[1]]$Close,1)
 
-for (m in names(tx)){
+for (m in names(tx)[-1]){
 	txToday=tx[[m]]
 	todayTime=unique(txToday$Time)
 	
