@@ -11,5 +11,7 @@ RUN cd /BeATradeR && Rscript installPackages.R
 
 WORKDIR /BeATradeR
 
+RUN chmod 777 -R /BeATradeR
+
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
 
